@@ -1,0 +1,43 @@
+.dashboard-container { padding: 16px; }
+.dash-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.dash-title { font-size: 20px; font-weight: 700; background: linear-gradient(90deg,#7c3aed,#0ea5e9); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dash-actions { display: flex; gap: 8px; }
+.dash-search { background:#0b1220; border:1px solid #1c2740; color:#e6eef8; padding:8px 10px; border-radius:8px; width: 320px; }
+.dash-filter { background:#0b1220; border:1px solid #1c2740; color:#e6eef8; padding:8px 10px; border-radius:8px; }
+
+.dash-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
+.kpi-card { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; box-shadow: 0 10px 24px rgba(0,0,0,0.35); }
+.kpi-label { font-size: 12px; color: #9aa8c9; margin-bottom: 6px; }
+.kpi-value { font-size: 24px; font-weight: 700; }
+
+.dash-card { background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); border:1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 10px; box-shadow: 0 12px 30px rgba(2,6,23,0.6); }
+
+.camera-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.camera-card { overflow: hidden; }
+.camera-card.offline { border: 1px solid #7f1d1d; box-shadow: 0 0 0 2px rgba(127,29,29,0.4) inset; }
+.camera-header { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: center; padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.camera-name { font-weight: 700; }
+.camera-location { color: #9aa8c9; }
+.camera-status { font-size: 12px; padding: 2px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); }
+.camera-status.active { background: #0d2b1d; color: #bbf7d0; border-color: #14532d; }
+.camera-status.offline { background: #3b0d0d; color: #fecaca; border-color: #7f1d1d; }
+.camera-frame { height: 160px; background: #05060a; display: flex; align-items: center; justify-content: center; }
+.frame-placeholder { color: #6b7280; font-size: 12px; }
+
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+
+/* sticky header/sidebar supported; keep default root height */
+.chart-title { font-weight: 600; margin-bottom: 8px; }
+.chart-box { height: 220px; display:flex; align-items:center; justify-content:center; }
+.chart-box.large { height: 260px; }
+
+@media (max-width: 1100px) {
+  .camera-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 820px) {
+  .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+  .charts-row { grid-template-columns: 1fr; }
+}
+
+

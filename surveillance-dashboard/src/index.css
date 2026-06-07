@@ -1,0 +1,241 @@
+/* src/index.css - plain CSS for Surveillance Dashboard (dark theme) */
+
+/* Reset / base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #0f1724;
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.3;
+}
+
+/* App container */
+.app-container {
+  min-height: 100vh;
+  padding: 16px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.header .title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.header .meta {
+  font-size: 13px;
+  color: #98a0b3;
+}
+
+/* Main grid layout */
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* Left column (main) */
+.left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Cards */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+}
+
+/* Live grid */
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Camera card */
+.camera-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 320px;
+  background: #0b1220;
+}
+.camera-card .camera-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+}
+.camera-card .cam-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.camera-card .cam-id { font-size: 12px; color: #99a6bf; }
+
+/* stream area */
+.camera-card .stream {
+  position: relative;
+  flex: 1;
+  background: #05060a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* placeholder video image style if video not present */
+.camera-card .stream img, .camera-card .stream video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay for bounding boxes / canvas */
+.camera-card .overlay {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+
+/* Alerts Panel (right side) */
+.alerts-panel {
+  height: calc(100vh - 140px);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.alerts-panel h2 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.alert-item {
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 10px;
+  border-radius: 8px;
+}
+.alert-item .top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.alert-item .type {
+  font-weight: 600;
+  font-size: 13px;
+}
+.alert-item .meta {
+  font-size: 12px;
+  color:#9aa8c9;
+}
+.alert-item img {
+  width: 100%;
+  margin-top:8px;
+  border-radius:6px;
+  display:block;
+}
+
+/* small UI elements */
+.btn {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:13px;
+  cursor:pointer;
+  border: none;
+}
+.btn-primary { background:#2563eb; color:#fff; }
+.btn-danger { background:#ef4444; color:#fff; }
+.btn-muted { background:#1f2937; color:#e6eef8; }
+
+/* Analytics card layout */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 12px;
+}
+.chart-card {
+  height: 240px;
+  padding: 8px;
+}
+
+/* responsive */
+@media (max-width: 920px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .live-grid { grid-template-columns: 1fr; }
+  .analytics-grid { grid-template-columns: 1fr; }
+  .camera-card { height: 240px; }
+}
+
+/* small helpers */
+.small { font-size: 12px; color: #9aa8c9; }
+.center { display:flex; align-items:center; justify-content:center; }
+
+/* accessibility: keyboard focus outlines */
+*:focus { outline: none; }
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35);
+}
+
+/* overlay canvas pointer-events control */
+.camera-card .overlay canvas { pointer-events: none; }
+.camera-card .overlay .controls { pointer-events: auto; }
+
+/* small screen layout tweaks */
+@media (max-width: 640px) {
+  .app-container { padding: 10px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .alerts-panel { height: auto; max-height: 60vh; }
+  .camera-card { height: 200px; }
+  .chart-card { height: 200px; }
+}
+
+/* modal responsiveness (overrides inline via !important where needed) */
+@media (max-width: 640px) {
+  [aria-modal="true"] > div { width: 96vw !important; max-height: 92vh !important; border-radius: 10px !important; }
+  /* stack modal content vertically */
+  [aria-modal="true"] > div > div:nth-child(2) { display: block !important; padding: 12px !important; }
+  [aria-modal="true"] img { max-height: 40vh; width: 100%; height: auto; }
+}
+
+/* Alert System additions */
+.badge {
+  display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius:999px; font-size:12px;
+}
+.alert-row {
+  display: grid; grid-template-columns: 1fr 120px 140px 120px 100px; gap: 8px; padding: 10px; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.alert-row:hover { background: rgba(255,255,255,0.03); }
+
+.toast-container {
+  position: fixed; right: 12px; top: 12px; display: flex; flex-direction: column; gap: 8px; z-index: 1100;
+}
+.toast-item {
+  border-radius: 10px; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); min-width: 220px; box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+}
+
+@media (max-width: 640px) {
+  .alert-row { grid-template-columns: 1fr 120px 1fr; }
+}
